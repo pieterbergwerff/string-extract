@@ -1,5 +1,6 @@
 import { readdir } from "fs/promises";
 import { resolve } from "path";
+import getPlugins from "../utils/getPlugins.util";
 
 const getDirectories = async (source) =>
   (await readdir(source, { withFileTypes: true }))
@@ -7,8 +8,13 @@ const getDirectories = async (source) =>
     .map((dirent) => dirent.name);
 
 export default async function Page() {
-  const dirname = await getDirectories(
+  const plugins = await getPlugins(
     resolve(process.cwd(), "src", "string-extract", "plugins")
   );
-  return <h1>String extract: {JSON.stringify(dirname, null, 4)}</h1>;
+  return (
+    <>
+      <h1>String extract</h1>
+      <pre>{JSON.stringify(plugins, null, 4)}</pre>
+    </>
+  );
 }
