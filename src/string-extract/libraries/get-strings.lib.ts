@@ -18,7 +18,7 @@ export class GetStringsLibrary {
         } else if (Array.isArray(value) && value.length) {
           this.#array(value);
         } else if (value?.constructor === Object) {
-          this.#object(value);
+          this.#object(value as object);
         } else if (typeof value === "number") {
           this.#string(String(value));
         } else if (this.#isDate(value)) {
