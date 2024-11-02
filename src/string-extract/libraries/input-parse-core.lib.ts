@@ -17,7 +17,6 @@ export class InputParseCore {
         const plugin = this.#pluginsLib.plugins[pluginNames[i]];
         output[pluginNames[i]] = await plugin(str);
       }
-      console.log(output);
     }
   }
 
