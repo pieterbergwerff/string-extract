@@ -1,11 +1,13 @@
 // @ts-check
 
+const { PHASE_PRODUCTION_BUILD } = require("next/constants");
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig = (phase) => ({
   output: "export",
   reactStrictMode: true,
-  basePath: "/string-extract",
   distDir: "out",
-};
+  ...(phase === PHASE_PRODUCTION_BUILD ? { basePath: "/string-extract" } : {}),
+});
 
 module.exports = nextConfig;
